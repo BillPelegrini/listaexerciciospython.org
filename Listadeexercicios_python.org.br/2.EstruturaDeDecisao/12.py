@@ -11,3 +11,54 @@
 #         Total de descontos              : R$  165,00
 #         Salário Liquido                 : R$  935,00
 
+
+def percentual(percent, salario):
+    return int((percent * salario) / 100)
+
+def imposto_de_renda(bruto):
+    if bruto <= 900:
+        irpf = 0
+    elif bruto > 900 and bruto <= 1500:
+        irpf = 5
+    elif bruto > 1500 and bruto < 2500:
+        irpf = 10
+    elif bruto > 2500:
+        irpf = 20
+    return irpf
+
+def previdencia(bruto):
+    if bruto <= 1100:
+        inss = 7.5
+    elif bruto > 1100 and bruto <= 2203.48:
+        inss = 9
+    elif bruto > 2203.49 and bruto <= 3305.22:
+        inss = 12
+    elif bruto > 3305.23 or bruto >= 6433.57:
+        inss = 14
+    return inss
+
+valorhora = int(input('Digite o seu valor hora: '))
+horastrab = int(input('Digite a quantida de horas trabalhadas: '))
+bruto = valorhora * horastrab
+irpf = percentual(imposto_de_renda(bruto),bruto)
+imp_inss = percentual(previdencia(bruto),bruto)
+sindicato = percentual(3,bruto)
+fgts = percentual(11,bruto)
+descontos = irpf + imp_inss + sindicato
+salario = bruto - descontos
+
+print ( 
+f''' 
+Salário Bruto: ({valorhora} * {horastrab})        : R$ {bruto:.2f}
+(-) IR ({imposto_de_renda(bruto)}%)                     : R$ {irpf:.2f}  
+(-) INSS ({previdencia(bruto)}%)                 : R$ {imp_inss:.2f}
+(-) Sindicato (3%)              : R$ {sindicato:.2f}
+FGTS (11%)                      : R$ {fgts:.2f}
+Total de descontos              : R$ {descontos:.2f}
+Salário Liquido                 : R$ {salario:.2f}
+'''
+)
+
+
+
+
