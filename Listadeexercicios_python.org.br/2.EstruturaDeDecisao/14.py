@@ -22,7 +22,6 @@ def conceito(media):
 notas = [int(x) for x in input('Digite suas notas e pressione Enter: ').split()]
 media = sum(notas) / len(notas)
 apr = ['A', 'B', 'C']
-repr = ['D', 'E']
 
 print(f'Notas do aluno: {notas}')
 print(f'Média do aluno: {media}')
